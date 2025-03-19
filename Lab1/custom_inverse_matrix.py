@@ -21,6 +21,8 @@ def custom_inverse_matrix(matrix, x, i):
     matrix = np.linalg.inv(matrix)
     l_vector = matrix @ x
     temp = l_vector[i]
+    if temp == 0:
+        raise ValueError("Матрица не обратима. l[i] = 0")
     l_vector[i] = -1
     l_vector_hat = -1 * l_vector / temp
     e_matrix = np.eye(len(x))
