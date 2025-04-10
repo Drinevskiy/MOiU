@@ -21,10 +21,6 @@ def start_simplex_method(c, A, b):
     x_wave = np.concatenate((np.zeros(n), b))
     B_wave = [n + i for i in range(m)]
     # 4
-    # print(c_wave)
-    # print(A_wave)
-    # print(x_wave)
-    # print(B_wave)
 
     result = simplex_method(c_wave, A_wave, x_wave, B_wave)
     # Проверка, является ли возвращаемое значение строкой (что указывает на ошибку)
@@ -67,7 +63,7 @@ examples = [
     (np.array([1, 0, 0], dtype=float),
      np.array([[1, 1, 1], 
                [2, 2, 2]], dtype=float), 
-     np.array([0, 0], dtype=float)),
+     np.array([0, -13.2], dtype=float)),
 
     # (np.array([1, 1,], dtype=float),
     #  np.array([[-1, 1], 
@@ -87,8 +83,14 @@ examples = [
 ]
 
 for c, A, b in examples:
-    x, B, A_new, b_new = start_simplex_method(c, A, b)
-    print(simplex_method(c, A_new, x, B))
+    result = start_simplex_method(c, A, b)
+    if isinstance(result, str):
+        print(result) 
+    else:
+        x, B, A_new, b_new = result 
+        print(simplex_method(c, A_new, x, B))
+    
+    
     # print(B)
     # print(A_new)
     # print(b_new)
