@@ -19,7 +19,7 @@ def potentials_method(a, b, c):
     x = np.zeros((m, n)) 
     B = []  # Базисные позициии
 
-    #! 1 Заполнение матрицы X(начальный базисный допустимый план)
+    # 1 Заполнение матрицы X(начальный базисный допустимый план)
     i = 0
     j = 0
     while i < m and j < n:
@@ -33,9 +33,9 @@ def potentials_method(a, b, c):
         elif b[j] == 0:
             j += 1
 
-    #! 2 Основная фаза
+    # 2 Основная фаза
     while True:
-        #! 3 Нахождение u, v
+        # 3 Нахождение u, v
         u_v_matrix = []
         result_values = []
         for i, j in B:
@@ -55,7 +55,7 @@ def potentials_method(a, b, c):
         u = potentials[: m]
         v = potentials[m :]
 
-        #! 5 Проверка оптимальности
+        # 5 Проверка оптимальности
         new_basis_position = None
         for i in range(len(c)):
             for j in range(len(c[0])):
@@ -107,7 +107,7 @@ def potentials_method(a, b, c):
                 if not basis_marks.get((i, j), True):
                     min_value = min(min_value, x[i, j])
 
-        #! 8 Добавление min_value к позициям с '+', вычитание из позиций с '-'
+        # 8 Добавление min_value к позициям с '+', вычитание из позиций с '-'
         for (i, j) in basis_marks.keys():
             if basis_marks[(i, j)]:
                 x[i, j] += min_value
